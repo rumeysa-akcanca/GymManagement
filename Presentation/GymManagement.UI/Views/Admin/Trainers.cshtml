@@ -1,0 +1,153 @@
+﻿
+@model TrainerMissionViewModel
+
+@{
+
+    Layout = "_AdminLayout";
+}
+<div class="card my-4">
+    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">Antrenörler</h6>
+        </div>
+    </div>
+    <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+                <thead>
+                <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ad-Soyad</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Maaş</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Katılma Tarihi</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kontrat Durumu</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach (var trainer in Model.Trainers)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                string adSoyad = trainer.FirstName + " " + trainer.LastName;
+                            }
+
+                            <div class="d-flex flex-column justify-content-center" style="margin-left: 5px;">
+                                <h6 class="mb-0 text-sm font-weight-bold">@adSoyad</h6>
+                            </div>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                            <p class="text-xs font-weight-bold mb-0">$@trainer.Salary</p>
+                        </td>
+
+                        <td class="align-middle text-center text-sm">
+                            <p class="text-xs font-weight-bold mb-0">@trainer.CreatedDate.ToString("dd/MM/yyyy")</p>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+
+                            @if (@trainer.WorkerContractIsActive)
+                            {
+                                <p class="badge bg-gradient-success mb-0">Aktif</p>
+                            }
+                            else
+                            {
+                                <p class="badge bg-gradient-danger mb-0">Pasif</p>
+                            }
+                        </td>
+                        <td class="align-middle">
+
+                            <a href="~/Admin/AddTrainer" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                Ekle
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                Güncelle
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .missionTrainer {
+        display: flex;
+        justify-content: space-around;
+        align-content: space-around;
+    }
+</style>
+<div class="missionTrainer">
+    
+    <div class="card my-4 mt-5" style="width: 45%;">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Antrenöre Görev Atama</h6>
+            </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ad-Soyad</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    @foreach (var trainer in Model.Trainers)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    string adSoyad = trainer.FirstName + " " + trainer.LastName;
+                                }
+
+                                <div class="d-flex flex-column justify-content-center" style="margin-left: 5px;">
+                                    <h6 class="mb-0 text-sm font-weight-bold">@adSoyad</h6>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+
+                                <a href="~/Admin/AddTrainer" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                    Ekle
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                    Güncelle
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+                <table>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    <div class="card my-4 mt-5">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                    <h6 class="text-white text-capitalize ps-3">Görevler</h6>
+                </div>
+            </div>
+    </div>
+        <ul class="list-group">
+            @foreach (var mission in Model.Missions)
+            {
+                <li class="list-group-item">@mission.Title</li>
+            }
+        </ul>
+    </div>
+</div>

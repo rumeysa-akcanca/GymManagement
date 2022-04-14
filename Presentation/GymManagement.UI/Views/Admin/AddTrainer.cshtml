@@ -1,0 +1,71 @@
+﻿@model TrainerCommandViewModel
+
+@{
+    ViewData["Title"] = "AddTrainer";
+    Layout = "_AdminLayout";
+}
+
+<h1>Antrenör Ekle</h1>
+<hr />
+<h2>Antrenör Bilgilerini Giriniz</h2>
+<style>
+    .form-row-two {
+        display: flex;
+        align-content: space-between;
+        justify-content: center;
+    }
+</style>
+
+<form asp-action="AddTrainer" asp-controller="Admin">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+
+        <div class="form-row-two">
+            <div class="col bg-white p-1" style="width: 40%; border-radius: 10px; margin-right: 10px;">
+                <input asp-for="@Model.EmployeeDetail.FirstName" class="form-control text-dark" placeholder="Ad" />
+                <span asp-validation-for="@Model.EmployeeDetail.FirstName" class="text-danger"></span>
+            </div>
+            <div class="col bg-white p-1" style="width: 40%; border-radius: 10px; margin-left: 10px;">
+                <input asp-for="@Model.EmployeeDetail.LastName" class="form-control text-dark" placeholder="Soyad" />
+                <span asp-validation-for="@Model.EmployeeDetail.LastName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" style="margin: 20px 0;">
+        <div class="form-row-two">
+
+            <div class="col bg-white p-1" style="width: 40%; border-radius: 10px; margin-right: 10px;">
+
+                <input asp-for="@Model.EmployeeDetail.InsuranceNumber" class="form-control" placeholder="Sosyal güvenlik numarası" />
+                <span asp-validation-for="@Model.EmployeeDetail.InsuranceNumber" class="text-danger"></span>
+            </div>
+            <div class="col bg-white p-1" style="width: 40%; border-radius: 10px; margin-left: 10px;">
+                <input type="number" asp-for="@Model.EmployeeDetail.Salary" class="form-control" placeholder="Maaş" />
+                <span asp-validation-for="@Model.EmployeeDetail.Salary" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-row-two">
+            <div class="col bg-white p-1" style="width: 40%; border-radius: 10px; margin-right: 10px;">
+                <input type="number" asp-for="@Model.WorkerContract.Duration" class="form-control" placeholder="Sözleşme süresi ay bazında" />
+                <span asp-validation-for="@Model.WorkerContract.Duration" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" style="margin: 20px; ">
+        <input type="submit" value="Ekle" class="btn btn-primary" style="width: 100%;" />
+    </div>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+}
+
